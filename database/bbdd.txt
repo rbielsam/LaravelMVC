@@ -1,0 +1,53 @@
+-- Crear la base de datos
+CREATE DATABASE cine;
+
+-- Usar la base de datos
+USE cine;
+
+-- Si no hay usuario creado
+-- CREATE USER 'web'@'localhost' IDENTIFIED BY '1234';
+
+-- Damos permisos al usuario a la base de datos
+GRANT ALL PRIVILEGES ON cine.* TO 'web'@'localhost';
+
+-- Aplicación de actores y películas
+-- actores
+-- id
+-- nombre
+-- fecha_nacimiento
+-- pais
+-- ha_fallecido
+-- num_oscars
+
+-- peliculas
+-- id
+-- titulo
+-- pais
+-- anyo_estreno
+-- num_nominaciones_a_oscar
+-- num_premios
+
+
+-- Las tablas se crear con los ficheros de laravel y ejecutando comanndos en la consola
+
+-- Ahora introducimos datos a la tabla peliculas
+-- php artisan tinker (Ahora sale un prompt)
+
+$l = new App\Models\Pelicula;
+$l->titulo = "Titanic";
+$l->pais = "México";
+$l->anyo_estreno = 1997;
+$l->num_nominaciones_a_oscar = 14;
+$l->num_premios = 11;
+$l->save(); // Això fa l'INSERT a la base de dades!
+
+-- Datos para la tabla actores
+$l = new App\Models\Actores;
+$l->nombre = "Leonardo DiCaprio";
+$l->fecha_nacimiento = '1971-11-11';
+$l->pais = "Estados Unidos";
+$l->ha_fallecido = false;
+$l->num_oscar = 1;
+$l->save();
+
+
