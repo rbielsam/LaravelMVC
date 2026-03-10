@@ -6,8 +6,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="container mt-5">
-<h1 class="mb-4">Llistat de Peliculles</h1>
+<h1 class="mb-4">Llistat de Pelicules</h1>
 <h2 class="mb-4">-rbielsa–</h2>
+
+<a href="/peliculas/crear" class="btn btn-success mb-3">Añadir nueva película/a>
 
 <table class="table table-striped table-hover">
     <thead class="table-dark">

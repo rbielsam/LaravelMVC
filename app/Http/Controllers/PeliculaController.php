@@ -16,4 +16,29 @@ class PeliculaController extends Controller
         return view('peliculas.index', ['peliculas' => $totesLesPelicules]);
     }
 
+    public function create()
+    {
+        return view('peliculas.create');
+    }
+
+    public function store(\Illuminate\Http\Request $request)
+    {
+        // 1. Creem un objecte nou del nostre Model (com una fila buida a la taula)
+        $nuevaPelicula = new \App\Models\Pelicula();
+
+        // 2. Omplim cada camp amb el que l'usuari ha escrit al formulari.
+        // Fem servir $request->input('NOM_DEL_CAMP_HTML')
+        $nuevaPelicula->titulo = $request->input('titulo');
+        $nuevaPelicula->pais = $request->input('pais');
+        $nuevaPelicula->anyo_estreno = $request->input('anyo_estreno');
+        $nuevaPelicula->num_premios = $request->input('num_premios');
+        $nuevaPelicula->num_nominaciones_a_oscar = $request->input('num_nominaciones_a_oscar');
+
+        // 3. El mètode save() l'envia definitivament a la base de dades MySQL
+        $nuevaPelicula->save();
+
+        // 4. Finalment, tornem al llistat de pelicules per veure que s'ha afegit correctament
+        return redirect('/peliculas/index');
+    }
+
 }
