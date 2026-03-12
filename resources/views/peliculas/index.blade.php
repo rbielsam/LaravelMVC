@@ -9,7 +9,7 @@
 <h1 class="mb-4">Llistat de Pelicules</h1>
 <h2 class="mb-4">-rbielsa–</h2>
 
-<a href="/peliculas/crear" class="btn btn-success mb-3">Añadir nueva película/a>
+<a href="/peliculas/crear" class="btn btn-success mb-3">Añadir nueva película</a>
 
 <table class="table table-striped table-hover">
     <thead class="table-dark">
