@@ -21,6 +21,7 @@
         <th>Num Nominacions a óscars</th>
         <th>Data de creació</th>
         <th>Darrera modificació</th>
+        <th>Accions</th>
     </tr>
     </thead>
     <tbody>
@@ -33,6 +34,9 @@
             <td>{{ $pelicula->num_nominaciones_a_oscar }}</td>
             <td>{{ $pelicula->created_at}}</td>
             <td>{{ $pelicula->updated_at}}</td>
+            <td>
+                <a href="/peliculas/{{ $pelicula->id }}" class="btn btn-info btn-sm">Ver</a>
+            </td>
         </tr>
     @empty
         <tr>

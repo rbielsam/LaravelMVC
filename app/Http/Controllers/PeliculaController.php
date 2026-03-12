@@ -34,11 +34,29 @@ class PeliculaController extends Controller
         $nuevaPelicula->num_premios = $request->input('num_premios');
         $nuevaPelicula->num_nominaciones_a_oscar = $request->input('num_nominaciones_a_oscar');
 
+        // GESTIÓ DE LA IMATGE
+        if ($request->hasFile('imatge')) {
+            // Guardem la imatge a la carpeta 'public/portades'
+            $fitxer = $request->file('imatge');
+            $nomImatge = time() . '_' . $fitxer->getClientOriginalName();
+            $fitxer->move(public_path('caratulas'), $nomImatge);
+
+            // Guardem el nom del fitxer a la base de dades
+            $nuevaPelicula->imatge = $nomImatge;
+        }
+
         // 3. El mètode save() l'envia definitivament a la base de dades MySQL
         $nuevaPelicula->save();
 
         // 4. Finalment, tornem al llistat de pelicules per veure que s'ha afegit correctament
         return redirect('/peliculas/index');
+    }
+
+    public function show($id)
+    {
+        // Busquem el llibre pel seu ID. Si no existeix, donarà un error 404.
+        $pelicula = \App\Models\Pelicula::findOrFail($id);
+        return view('peliculas.show', compact('pelicula'));
     }
 
 }
