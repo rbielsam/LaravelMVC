@@ -52,11 +52,26 @@ class PeliculaController extends Controller
         return redirect('/peliculas/index');
     }
 
+    // Mostrar película (Detalle)
     public function show($id)
     {
-        // Busquem el llibre pel seu ID. Si no existeix, donarà un error 404.
+        // Busquem la película pel seu ID. Si no existeix, donarà un error 404.
         $pelicula = \App\Models\Pelicula::findOrFail($id);
         return view('peliculas.show', compact('pelicula'));
+    }
+
+    // Borrar película
+    public function destroy($id)
+    {
+        // 1. Busca la película per ID
+        $pelicula = \App\Models\Pelicula::findOrFail($id);
+
+        // 2. Crida el mètode d'esborrat
+        $pelicula->delete();
+
+        // 3. Redirecciona al llistat amb un missatge
+        //$missatge = "Película borrada correctamente"; ['missatge' => $missatge]
+        return redirect('/peliculas/index');
     }
 
 }

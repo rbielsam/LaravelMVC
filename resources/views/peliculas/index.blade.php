@@ -6,6 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="container mt-5">
+
 <h1 class="mb-4">Llistat de Pelicules</h1>
 <h2 class="mb-4">-rbielsa–</h2>
 
@@ -36,6 +37,9 @@
             <td>{{ $pelicula->updated_at}}</td>
             <td>
                 <a href="/peliculas/{{ $pelicula->id }}" class="btn btn-info btn-sm">Ver</a>
+            </td>
+            <td>
+                <a href="/peliculas/{{ $pelicula->id }}" class="btn btn-info btn-sm">Eliminar</a>
             </td>
         </tr>
     @empty

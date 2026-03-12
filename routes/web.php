@@ -17,3 +17,6 @@ Route::post('/peliculas/crear', [PeliculaController::class, 'store']);
 
 // Ruta per a mostrar la película seleccionada del llistat
 Route::get('/peliculas/{id}', [PeliculaController::class, 'show']);
+
+// Ruta per esborrar la película seleccionada del llistat
+Route::get('/peliculas/{id}', [PeliculaController::class, 'destroy']);
