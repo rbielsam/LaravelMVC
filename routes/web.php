@@ -16,7 +16,11 @@ Route::get('/peliculas/crear', [PeliculaController::class, 'create']);
 Route::post('/peliculas/crear', [PeliculaController::class, 'store']);
 
 // Ruta per a mostrar la película seleccionada del llistat
-Route::get('/peliculas/{id}', [PeliculaController::class, 'show']);
+Route::get('/peliculas/ver/{id}', [PeliculaController::class, 'show']);
 
 // Ruta per esborrar la película seleccionada del llistat
-Route::get('/peliculas/{id}', [PeliculaController::class, 'destroy']);
+Route::delete('/peliculas/{id}', [PeliculaController::class, 'destroy']);
+
+// Ruta per editar la película seleccionada del llistat
+Route::get('/peliculas/editar/{id}', [PeliculaController::class, 'edit']);
+Route::put('/peliculas/editar/{id}', [PeliculaController::class, 'update']);

@@ -74,4 +74,46 @@ class PeliculaController extends Controller
         return redirect('/peliculas/index');
     }
 
+    // Vista editar película
+    public function edit($id)
+    {
+        // Busca la película por ID
+        $pelicula = \App\Models\Pelicula::findOrFail($id);
+
+        return view('peliculas.edit', compact('pelicula'));
+    }
+
+    // Editar película
+    public function update(\Illuminate\Http\Request $request)
+    {
+        // 1. Creem un objecte nou del nostre Model (com una fila buida a la taula)
+        $nuevaPelicula = \App\Models\Pelicula::findOrFail($request->id);
+
+
+        // 2. Omplim cada camp amb el que l'usuari ha escrit al formulari.
+        // Fem servir $request->input('NOM_DEL_CAMP_HTML')
+        $nuevaPelicula->titulo = $request->input('titulo');
+        $nuevaPelicula->pais = $request->input('pais');
+        $nuevaPelicula->anyo_estreno = $request->input('anyo_estreno');
+        $nuevaPelicula->num_premios = $request->input('num_premios');
+        $nuevaPelicula->num_nominaciones_a_oscar = $request->input('num_nominaciones_a_oscar');
+
+        // GESTIÓ DE LA IMATGE
+        if ($request->hasFile('imatge')) {
+            // Guardem la imatge a la carpeta 'public/portades'
+            $fitxer = $request->file('imatge');
+            $nomImatge = time() . '_' . $fitxer->getClientOriginalName();
+            $fitxer->move(public_path('caratulas'), $nomImatge);
+
+            // Guardem el nom del fitxer a la base de dades
+            $nuevaPelicula->imatge = $nomImatge;
+        }
+
+        // 3. El mètode save() l'envia definitivament a la base de dades MySQL
+        $nuevaPelicula->save();
+
+        // 4. Finalment, tornem al llistat de pelicules per veure que s'ha afegit correctament
+        return redirect('/peliculas/index');
+    }
+
 }

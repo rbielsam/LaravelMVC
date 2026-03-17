@@ -36,10 +36,13 @@
             <td>{{ $pelicula->created_at}}</td>
             <td>{{ $pelicula->updated_at}}</td>
             <td>
-                <a href="/peliculas/{{ $pelicula->id }}" class="btn btn-info btn-sm">Ver</a>
+                <a href="/peliculas/ver/{{ $pelicula->id }}" class="btn btn-info btn-sm">Ver</a>
             </td>
             <td>
                 <a href="/peliculas/{{ $pelicula->id }}" class="btn btn-info btn-sm">Eliminar</a>
+            </td>
+            <td>
+                <a href="/peliculas/editar/{{ $pelicula->id }}" class="btn btn-info btn-sm">Editar</a>
             </td>
         </tr>
     @empty
