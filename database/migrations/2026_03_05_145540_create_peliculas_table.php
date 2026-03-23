@@ -22,4 +22,9 @@ return new class extends Migration
             $table->timestamps(); // Crea les columnes created_at i updated_at
         });
     }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('peliculas');
+    }
 };

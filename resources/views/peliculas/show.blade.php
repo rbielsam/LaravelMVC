@@ -14,6 +14,14 @@
             <p><strong>Año de estreno:</strong> {{ $pelicula->anyo_estreno }}</p>
             <p><strong>Número de premios:</strong> {{ $pelicula->num_premios }}</p>
             <p><strong>Nominaciones a Óscar:</strong> {{ $pelicula->num_nominaciones_a_oscar }}</p>
+
+            <p><strong>Actores:</strong></p>
+            <ul>
+                @foreach($pelicula->actores as $actor)
+                    <li>{{ $actor->nombre }}</li>
+                @endforeach
+            </ul>
+
             <a href="/peliculas/index" class="btn btn-secondary">Volver</a>
         </div>
     </div>

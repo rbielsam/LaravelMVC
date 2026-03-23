@@ -39,6 +39,16 @@
         <input type="file" name="imatge" class="form-control">
     </div>
 
+    <div class="mb-3">
+        <label class="form-label">Selecciona els actors:</label>
+        <select name="actores[]" class="form-select" multiple>
+            @foreach($actores as $actor)
+                <option value="{{ $actor->id }}">{{ $actor->nombre }}</option>
+            @endforeach
+        </select>
+        <small class="text-muted">Mantingues premut Ctrl per seleccionar-ne més d'un.</small>
+    </div>
+
     <button type="submit" class="btn btn-primary">Guardar en el cine</button>
     <a href="/peliculas/index" class="btn btn-link">Volver atrás</a>
 </form>

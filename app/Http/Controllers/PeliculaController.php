@@ -18,7 +18,9 @@ class PeliculaController extends Controller
 
     public function create()
     {
-        return view('peliculas.create');
+        // Agafem tots els actors de la BD per llistar-los al formulari
+        $actores = \App\Models\Actor::all();
+        return view('peliculas.create', compact('actores'));
     }
 
     public function store(\Illuminate\Http\Request $request)
@@ -47,6 +49,12 @@ class PeliculaController extends Controller
 
         // 3. El mètode save() l'envia definitivament a la base de dades MySQL
         $nuevaPelicula->save();
+
+        // Si l'usuari ha seleccionat actors al formulari:
+        if ($request->has('actores')) {
+            // attach() agafa l'array d'IDs d'actors i els posa a la taula pivot
+            $nuevaPelicula->actores()->attach($request->input('actores'));
+        }
 
         // 4. Finalment, tornem al llistat de pelicules per veure que s'ha afegit correctament
         return redirect('/peliculas/index');
