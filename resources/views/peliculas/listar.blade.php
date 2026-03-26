@@ -7,7 +7,7 @@
 </head>
 <body class="container mt-5">
 
-<h1 class="mb-4">Llistat de Pelicules</h1>
+<h1 class="mb-4">Llistat de Pelicules per actors</h1>
 <h2 class="mb-4">-rbielsa–</h2>
 
 <a href="/peliculas/crear" class="btn btn-success mb-3">Añadir nueva película</a>
@@ -19,30 +19,22 @@
     <thead class="table-dark">
     <tr>
         <th>Títol</th>
-        <th>País</th>
-        <th>Any d'estrenament</th>
-        <th>N premis</th>
-        <th>Num Nominacions a óscars</th>
-        <th>Data de creació</th>
-        <th>Darrera modificació</th>
-        <th>Accions</th>
+        <th>Actors</th>
+
     </tr>
     </thead>
     <tbody>
-    @forelse($peliculas as $pelicula)
+    @forelse($listaPeliculas as $pelicula)
         <tr>
             <td>{{ $pelicula->titulo }}</td>
-            <td>{{ $pelicula->pais }}</td>
-            <td>{{ $pelicula->anyo_estreno }}</td>
-            <td>{{ $pelicula->num_premios }}</td>
-            <td>{{ $pelicula->num_nominaciones_a_oscar }}</td>
-            <td>{{ $pelicula->created_at}}</td>
-            <td>{{ $pelicula->updated_at}}</td>
             <td>
-                <a href="/peliculas/ver/{{ $pelicula->id }}" class="btn btn-info btn-sm">Ver</a>
-                <a href="/peliculas/{{ $pelicula->id }}" class="btn btn-info btn-sm">Eliminar</a>
-                <a href="/peliculas/editar/{{ $pelicula->id }}" class="btn btn-info btn-sm">Editar</a>
+                <ul>
+                    @foreach($pelicula->actores as $actor)
+                        <li>{{ $actor->nombre }}</li>
+                    @endforeach
+                </ul>
             </td>
+
         </tr>
     @empty
         <tr>

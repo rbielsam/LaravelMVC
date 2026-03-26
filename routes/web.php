@@ -44,3 +44,7 @@ Route::post('/actores/crear', [ActorController::class, 'store']);
 // Ruta per editar i actualitzar l'actor seleccionat del llistat
 Route::get('/actores/editar/{id}', [ActorController::class, 'edit']);
 Route::put('/actores/editar/{id}', [ActorController::class, 'update']);
+
+// Rutes per llistats películes amb actors i actors amb películes
+Route::get('/peliculas/listar/pelisactores', [PeliculaController::class, 'listar']);
+Route::get('/actores/listar', [ActorController::class, 'listar']);

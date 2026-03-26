@@ -141,4 +141,13 @@ class ActorController extends Controller
         return redirect('/actores/index');
     }
 
+    public function listar()
+    {
+        // Busquem la película pel seu ID. Si no existeix, donarà un error 404.
+        $listaActores = Actor::all();
+
+        // Enviem les dades a la vista (com el ModelAndView)
+        return view('actores.listar', ['listaActores' => $listaActores]);
+    }
+
 }

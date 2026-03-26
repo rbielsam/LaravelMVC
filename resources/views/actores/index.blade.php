@@ -12,6 +12,8 @@
 
 <a href="/actores/crear" class="btn btn-success mb-3">Afegir nou actor</a>
 <a href="/peliculas/index" class="btn btn-success mb-3">Llista de Películes</a>
+<a href="/peliculas/listar/pelisactores" class="btn btn-success mb-3">Ver películes por actores</a>
+<a href="/actores/listar" class="btn btn-success mb-3">Ver actores por películas</a>
 
 <table class="table table-striped table-hover">
     <thead class="table-dark">

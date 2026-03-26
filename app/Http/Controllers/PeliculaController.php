@@ -139,4 +139,12 @@ class PeliculaController extends Controller
         return redirect('/peliculas/index');
     }
 
+    public function listar()
+    {
+        $listaPeliculas = Pelicula::all();
+
+        // Enviem les dades a la vista (com el ModelAndView)
+        return view('peliculas.listar', ['listaPeliculas' => $listaPeliculas]);
+    }
+
 }
