@@ -34,6 +34,16 @@
         <input type="number" step="0.01" name="num_nominaciones_a_oscar" value={{$pelicula->num_nominaciones_a_oscar}} class="form-control">
     </div>
 
+    <select name="actores[]" class="form-select" multiple>
+        @foreach($actores as $actor)
+            @if ($pelicula->actores->contains('id', $actor->id))
+                <option value="{{ $actor->id }}" selected>{{ $actor->nombre }}</option>
+            @else
+                <option value="{{ $actor->id }}">{{ $actor->nombre }}</option>
+            @endif
+        @endforeach
+    </select>
+
     <div class="mb-3">
         <label class="form-label">Carátula</label>
         <input type="file" name="imatge" class="form-control">

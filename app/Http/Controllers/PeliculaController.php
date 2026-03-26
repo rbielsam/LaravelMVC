@@ -53,7 +53,11 @@ class PeliculaController extends Controller
         // Si l'usuari ha seleccionat actors al formulari:
         if ($request->has('actores')) {
             // attach() agafa l'array d'IDs d'actors i els posa a la taula pivot
-            $nuevaPelicula->actores()->attach($request->input('actores'));
+            //$nuevaPelicula->actores()->attach($request->input('actores'));
+            $nuevaPelicula->actores()->sync($request->input('actores'));
+        }
+        else{
+            $nuevaPelicula->actores()->detach();
         }
 
         // 4. Finalment, tornem al llistat de pelicules per veure que s'ha afegit correctament
@@ -87,8 +91,9 @@ class PeliculaController extends Controller
     {
         // Busca la película por ID
         $pelicula = \App\Models\Pelicula::findOrFail($id);
+        $actores = \App\Models\Actor::all();
 
-        return view('peliculas.edit', compact('pelicula'));
+        return view('peliculas.edit', compact('pelicula', 'actores'));
     }
 
     // Editar película
@@ -119,6 +124,16 @@ class PeliculaController extends Controller
 
         // 3. El mètode save() l'envia definitivament a la base de dades MySQL
         $nuevaPelicula->save();
+
+        // Sincrnitzar Actors
+        if ($request->has('actores')) {
+            // attach() agafa l'array d'IDs d'actors i els posa a la taula pivot
+            //$nuevaPelicula->actores()->attach($request->input('actores'));
+            $nuevaPelicula->actores()->sync($request->input('actores'));
+        }
+        else{
+            $nuevaPelicula->actores()->detach();
+        }
 
         // 4. Finalment, tornem al llistat de pelicules per veure que s'ha afegit correctament
         return redirect('/peliculas/index');

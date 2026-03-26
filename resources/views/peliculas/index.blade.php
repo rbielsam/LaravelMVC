@@ -11,6 +11,7 @@
 <h2 class="mb-4">-rbielsa–</h2>
 
 <a href="/peliculas/crear" class="btn btn-success mb-3">Añadir nueva película</a>
+<a href="/actores/index" class="btn btn-success mb-3">Lista de Actores</a>
 
 <table class="table table-striped table-hover">
     <thead class="table-dark">
